@@ -1,21 +1,24 @@
+import 'package:chat_app/common/utils/show_snack_bar.dart';
 import 'package:chat_app/common/widgets/custom_button.dart';
 import 'package:chat_app/common/widgets/custom_text.dart';
 import 'package:chat_app/common/widgets/custom_text_field.dart';
+import 'package:chat_app/features/auth/controller/auth_controller.dart';
 import 'package:chat_app/utils/app_colors.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   static const routeName = '/login-screen';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   TextEditingController countryController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   Country? targetCountry;
@@ -30,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Enter your phone number'),
         backgroundColor: AppColors.lightGray3,
@@ -75,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(targetCountry != null
                   ? '+${targetCountry!.phoneCode}'
-                  : '+98'),
+                  : ''),
             ),
             labelColor: AppColors.darkGray,
             cursorColor: AppColors.appBarColor,
@@ -86,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const Spacer(),
           CustomButton(
-            onPressed: () {},
+            onPressed: () {
+              _sendPhoneNumber();
+            },
             leftRightMargin: 20,
             topBottomMargin: 10,
             text: 'Next',
@@ -126,5 +132,18 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       },
     );
+  }
+
+  void _sendPhoneNumber() {
+    String phoneNumber = phoneController.text.trim();
+    if (phoneNumber.length == 10 && targetCountry != null) {
+      print('+${targetCountry!.phoneCode}$phoneNumber');
+      ref
+          .read(authControllerProvider)
+          .signInWithPhone(context, '+${targetCountry!.phoneCode}$phoneNumber');
+    } else {
+      showSnackBar(
+          context: context, content: 'Please enter a valid phone number');
+    }
   }
 }
