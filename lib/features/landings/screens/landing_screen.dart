@@ -10,10 +10,10 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.cream,
-        body: Column(
+    return Scaffold(
+      backgroundColor: AppColors.cream,
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 50),
@@ -59,6 +59,6 @@ class LandingScreen extends StatelessWidget {
   }
 
   void navigateToLoginScreen(BuildContext context){
-    Navigator.pushNamed(context, LoginScreen.routeName);
+    Navigator.popAndPushNamed(context, LoginScreen.routeName);
   }
 }

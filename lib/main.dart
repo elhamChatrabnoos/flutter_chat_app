@@ -1,7 +1,7 @@
-import 'package:chat_app/core/routing/router.dart';
 import 'package:chat_app/features/landings/screens/landing_screen.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/utils/app_colors.dart';
+import 'package:chat_app/utils/routing/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.lightGray3,
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.appBarColor,
+          foregroundColor: AppColors.lightGray3,
         ),
       ),
       home: const LandingScreen(),

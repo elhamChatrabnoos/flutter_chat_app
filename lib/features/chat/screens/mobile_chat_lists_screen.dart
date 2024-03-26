@@ -1,10 +1,13 @@
 import 'package:chat_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../widget/contact_list.dart';
+import '../../../utils/widget/contact_list.dart';
 
-class MobileLayoutScreen extends StatelessWidget {
-  const MobileLayoutScreen({Key? key}) : super(key: key);
+
+class MobileChatListScreen extends StatelessWidget {
+  const MobileChatListScreen({Key? key}) : super(key: key);
+
+  static const String routeName = '/chat-list-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class MobileLayoutScreen extends StatelessWidget {
           bottom: TabBar(
             indicatorWeight: 2,
             unselectedLabelColor: AppColors.lightGray,
-            indicatorColor: AppColors.appBarColor,
+            indicatorColor: AppColors.lightGray3,
+            labelColor: AppColors.lightGray3,
             tabs: const [
               Tab(text: "Chats"),
               Tab(text: "Status"),
@@ -36,7 +40,11 @@ class MobileLayoutScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const ContactList(),
+        body: const TabBarView(children: [
+          ContactList(),
+          Column(),
+          Column(),
+        ]),
       ),
     );
   }

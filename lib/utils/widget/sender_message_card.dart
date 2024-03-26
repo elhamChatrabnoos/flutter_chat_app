@@ -1,7 +1,7 @@
+import 'package:chat_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart';
-import '../common/widgets/custom_text.dart';
+import '../../common/widgets/custom_text.dart';
 
 class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({Key? key}) : super(key: key);

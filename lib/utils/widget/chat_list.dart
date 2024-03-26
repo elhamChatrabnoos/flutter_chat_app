@@ -1,6 +1,8 @@
-import 'package:chat_app/widget/my_message_card.dart';
-import 'package:chat_app/widget/sender_message_card.dart';
+
+import 'package:chat_app/utils/widget/sender_message_card.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'my_message_card.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({Key? key}) : super(key: key);

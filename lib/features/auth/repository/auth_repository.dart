@@ -15,7 +15,6 @@ final authRepositoryProvider = Provider(
 class AuthRepository {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore fireStore;
-
   AuthRepository({required this.firebaseAuth, required this.fireStore});
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {
