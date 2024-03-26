@@ -1,4 +1,3 @@
-import 'package:chat_app/common/utils/show_snack_bar.dart';
 import 'package:chat_app/common/widgets/custom_button.dart';
 import 'package:chat_app/common/widgets/custom_text.dart';
 import 'package:chat_app/common/widgets/custom_text_field.dart';
